@@ -9,29 +9,29 @@ function fish_prompt
     end
 
     if pwd_is_home
-        echo_color -o $status_color "⋊> "
+        echo -sn (set_color -o $status_color) "⋊> " (set_color normal)
         set root_glyph "~/"
     else
-        echo_color -o $status_color "⧕ "
+        echo -sn (set_color -o $status_color) "⧕ " (set_color normal)
         set root_glyph "/"
     end
 
     if test 0 -eq (id -u $USER) -o ! -z "$SSH_CLIENT"
-        echo_color 0fc (host_info "user@host ")
+        echo -sn (set_color 0fc) (host_info "user@host ") (set_color normal)
     end
 
-    echo_color cff $root_glyph
+    echo -sn (set_color cff) $root_glyph (set_color normal)
 
     if test ! -z "$pwd_info[2]"
-        echo_color cff "$pwd_info[2]/"
+        echo -sn (set_color cff) "$pwd_info[2]/" (set_color normal)
     end
 
     if test ! -z "$pwd_info[1]"
-        echo_color 0fc "$pwd_info[1]"
+        echo -sn (set_color 0fc) "$pwd_info[1]" (set_color normal)
     end
 
     if test ! -z "$pwd_info[3]"
-        echo_color cff "/$pwd_info[3]"
+        echo -sn (set_color cff) "/$pwd_info[3]" (set_color normal)
     end
 
     if set -l branch_name (git_branch_name)
@@ -66,15 +66,15 @@ function fish_prompt
             set branch_name "{$branch_name}"
         end
 
-        echo_color fff "$git_glyph"
-        echo_color $branch_color "$branch_name"
+        echo -sn (set_color fff) "$git_glyph" (set_color normal)
+        echo -sn (set_color "$branch_color") "$branch_name" (set_color normal)
 
         if test ! -z "$git_ahead"
-            echo_color fff " $git_ahead"
+            echo -sn (set_color fff) " $git_ahead" (set_color normal)
         end
 
-        echo_color fff "$branch_glyph"
+        echo -sn (set_color fff) "$branch_glyph" (set_color normal)
     end
 
-    echo_color " "
+    echo
 end

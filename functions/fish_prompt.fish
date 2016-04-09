@@ -76,5 +76,5 @@ function fish_prompt
         echo -sn (set_color fff) "$branch_glyph" (set_color normal)
     end
 
-    echo
+    echo " "
 end

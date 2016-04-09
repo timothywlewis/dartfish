@@ -67,7 +67,7 @@ function fish_prompt
         end
 
         echo -sn (set_color fff) "$git_glyph" (set_color normal)
-        echo -sn (set_color "$branch_color") "$branch_name" (set_color normal)
+        echo -sn (set_color $branch_color) "$branch_name" (set_color normal)
 
         if test ! -z "$git_ahead"
             echo -sn (set_color fff) " $git_ahead" (set_color normal)

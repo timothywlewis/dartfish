@@ -14,11 +14,12 @@ function fish_prompt
     set_color normal
     
     if test 0 -eq (id -u $USER) -o ! -z "$SSH_CLIENT"
-        echo -sn (set_color $fish_color_user) (host_info "user")
+        echo -sn (set_color -o $fish_color_user) (host_info "user")
         echo -sn (set_color $fish_color_normal) "@"
-        echo -sn (set_color $fish_color_host) (host_info "host ")
+        echo -sn (set_color -o $fish_color_host) (host_info "host ")
     end
-
+    set_color normal 
+    
     switch $USER
         case root
         set_color $fish_color_cwd_root
@@ -30,7 +31,7 @@ function fish_prompt
     if set -l branch_name (git_branch_name)
         set -l git_glyph " on "
         set -l branch_glyph
-        # Using custom color since there isn't a defined vairbles for git stuff
+        # Using custom colours since there aren't defined variables for git stuff
         set -l branch_color 0fc -o
 
         if git_is_detached_head

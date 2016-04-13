@@ -3,7 +3,7 @@ function fish_right_prompt
     set -l status_color 0fc
 
     if test "$status_copy" -ne 0
-        set status_color f30
+        set status_color $fish_color_error
     end
 
     if test "$CMD_DURATION" -gt 100

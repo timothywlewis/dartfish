@@ -1,5 +1,5 @@
 function fish_prompt
-    # Make a local copy of the status code of last command. This should be first thing in the script.  
+    # Make a local copy of the status code of last command. This should be first thing in the script.
     set -l status_copy $status
 
     # If any of the colour variables aren't defined they're set to 'normal' colour
@@ -88,6 +88,7 @@ function fish_prompt
 
     # Operator at the end to show the end of prompt, can be confusing without it sometimes
     set_color $fish_color_operator
-    echo -ns " ⟩"
+    set -q fish_operator; or set fish_operator " ⟩"
+    echo -ns $fish_operator
     set_color normal
 end

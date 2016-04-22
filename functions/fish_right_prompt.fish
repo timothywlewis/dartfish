@@ -1,9 +1,15 @@
 function fish_right_prompt
+    # If any of the colour variables aren't defined they're set to 'normal' colour 
+    for color in $fish_color_error
+        if set -q color
+            set color normal
+        end
+    end
     set -l status_copy $status
     set -l status_color 0fc
 
     if test "$status_copy" -ne 0
-        set status_color f30
+        set status_color $fish_color_error
     end
 
     if test "$CMD_DURATION" -gt 100

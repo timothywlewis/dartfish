@@ -1,42 +1,51 @@
 function fish_prompt
+    # If any of the colour variables aren't defined they're set to 'normal' colour 
+    for color in $fish_color_cwd $fish_color_cwd_root $fish_color_error $fish_color_host $fish_color_operator $fish_color_user
+        if set -q color
+            set color normal
+        end
+    end
+    
+    # Make a local copy of the status code of last command
     set -l status_copy $status
+    # Since there isn't a "official" colour variables for sucess colour, we've chose one. 
     set -l status_color 0fc
-    set -l root_glyph
-    set -l pwd_info (pwd_info "/")
 
+    # If last command exited with an error change colour of the "Dartfish" in the prompt
     if test "$status_copy" -ne 0
-        set status_color f30
+        set status_color $fish_color_error
     end
 
+    # Change Dartfish symbol based on current location
     if pwd_is_home
-        echo -sn (set_color -o $status_color) "⋊> " (set_color normal)
-        set root_glyph "~/"
+        echo -sn (set_color -o $status_color) "⨉⪧ "
     else
-        echo -sn (set_color -o $status_color) "⧕ " (set_color normal)
-        set root_glyph "/"
+        echo -sn (set_color -o $status_color) "⧕ "
     end
-
+    set_color normal
+    
+    # If running in root mode or connected to some other host, display relavent information
     if test 0 -eq (id -u $USER) -o ! -z "$SSH_CLIENT"
-        echo -sn (set_color 0fc) (host_info "user@host ") (set_color normal)
+        echo -sn (set_color -o $fish_color_user) (host_info "user")
+        echo -sn (set_color $fish_color_normal) "@"
+        echo -sn (set_color -o $fish_color_host) (host_info "host ")
     end
-
-    echo -sn (set_color cff) $root_glyph (set_color normal)
-
-    if test ! -z "$pwd_info[2]"
-        echo -sn (set_color cff) "$pwd_info[2]/" (set_color normal)
+    set_color normal 
+    
+    # Switch colour variables based on current user
+    switch $USER
+        case root
+        set_color $fish_color_cwd_root
+        case "*"
+        set_color $fish_color_cwd
     end
-
-    if test ! -z "$pwd_info[1]"
-        echo -sn (set_color 0fc) "$pwd_info[1]" (set_color normal)
-    end
-
-    if test ! -z "$pwd_info[3]"
-        echo -sn (set_color cff) "/$pwd_info[3]" (set_color normal)
-    end
-
+    echo -sn (prompt_pwd)
+    
+    # Git information if cwd is a git repo
     if set -l branch_name (git_branch_name)
         set -l git_glyph " on "
         set -l branch_glyph
+        # Using custom colours since there aren't defined variables for git stuff
         set -l branch_color 0fc -o
 
         if git_is_detached_head
@@ -76,5 +85,8 @@ function fish_prompt
         echo -sn (set_color fff) "$branch_glyph" (set_color normal)
     end
 
-    echo " "
+    # Operator at the end to show the end of prompt, can be confusing without it sometimes
+    set_color $fish_color_operator
+    echo -ns " ⟩"
+    set_color normal
 end

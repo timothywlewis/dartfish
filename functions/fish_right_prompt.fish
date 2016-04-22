@@ -1,10 +1,12 @@
 function fish_right_prompt
-    # If any of the colour variables aren't defined they're set to 'normal' colour 
     for color in $fish_color_error
+        # If any of the colour variables aren't defined they're set to 'normal' colour 
+        
         if set -q color
             set color normal
         end
     end
+    
     set -l status_copy $status
     set -l status_color 0fc
 
@@ -18,7 +20,7 @@ function fish_right_prompt
 
         echo -sn (set_color $status_color) "$duration" (set_color normal)
 
-    else if set -l last_job_id (last_job_id)
+    else if set -l last_job_id (last_job_id -l)
         echo -sn (set_color $status_color) "%$last_job_id" (set_color normal)
     else
         echo -sn (set_color 555) (date "+%H:%M") (set_color normal)

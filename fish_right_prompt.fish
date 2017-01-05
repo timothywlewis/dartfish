@@ -1,12 +1,12 @@
 function fish_right_prompt
     for color in $fish_color_error
-        # If any of the colour variables aren't defined they're set to 'normal' colour 
-        
+        # If any of the colour variables aren't defined they're set to 'normal' colour
+
         if set -q color
             set color normal
         end
     end
-    
+
     set -l status_copy $status
     set -l status_color 0fc
 
@@ -14,7 +14,7 @@ function fish_right_prompt
         set status_color $fish_color_error
     end
 
-    if test "$CMD_DURATION" -gt 100
+    if test -n "$CMD_DURATION" -a "$CMD_DURATION" -gt 100
         set -l duration_copy $CMD_DURATION
         set -l duration (echo $CMD_DURATION | humanize_duration)
 

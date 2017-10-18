@@ -1,5 +1,4 @@
 fisherman/git_util
 fisherman/pwd_is_home
 fisherman/host_info
-fisherman/last_job_id
 fisherman/humanize_duration

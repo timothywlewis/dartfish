@@ -11,7 +11,7 @@ Classical prompt inspired by dartfish.
 With [Fisherman]
 
 ```fish
-fisher i dartfish
+fisher timothywlewis/dartfish2
 ```
 
 ## Terminal Settings

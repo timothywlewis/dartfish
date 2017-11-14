@@ -88,7 +88,7 @@ function fish_prompt
 
     # Operator at the end to show the end of prompt, can be confusing without it sometimes
     set_color $fish_color_operator
-    set -q fish_operator; or set fish_operator " ⟩"
+    set -q fish_operator; or set fish_operator " ⟩ "
     echo -ns $fish_operator
     set_color normal
 end

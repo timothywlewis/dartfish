@@ -1,4 +1,4 @@
-fisherman/git_util
-fisherman/pwd_is_home
-fisherman/host_info
-fisherman/humanize_duration
+fishpkg/fish-git-util
+fishpkg/fish-pwd-is-home
+fishpkg/fish-host-info
+fishpkg/fish-humanize-duration

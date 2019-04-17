@@ -1,6 +1,4 @@
-[![Slack Room][slack-badge]][slack-link]
-
-# Dartfish
+# Dartfish2
 
 Classical prompt inspired by dartfish.
 
@@ -11,7 +9,7 @@ Classical prompt inspired by dartfish.
 With [Fisherman]
 
 ```fish
-fisher timothywlewis/dartfish2
+fisher add timothywlewis/dartfish2
 ```
 
 ## Terminal Settings
@@ -19,9 +17,6 @@ fisher timothywlewis/dartfish2
 * [Dartfish.terminal]
 * [Dartfish.itermcolors]
 * Font: 16pt Source Code Pro Medium
-
-[slack-link]: https://fisherman-wharf.herokuapp.com/
-[slack-badge]: https://fisherman-wharf.herokuapp.com/badge.svg
 
 [Fisherman]: https://github.com/fisherman/fisherman
 [Dartfish.terminal]: https://github.com/fishery/dartfish/raw/master/Dartfish.terminal
